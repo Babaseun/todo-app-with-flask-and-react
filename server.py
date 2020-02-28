@@ -52,6 +52,10 @@ def login():
 
             return jsonify({"token": token}), 200
 
+        else:
+
+            return jsonify({"message": "Either email or password is incorrect"}), 400
+
     else:
         return jsonify({"message": "User is not registered"}), 400
 
