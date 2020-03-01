@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import Image from './Spinner-1s-200px.gif';
+
 
 function Registration() {
  const [error, setError] = useState('');
  const [errorStyle, setErrorStyle] = useState('');
-
+ const [spinnerStyle, setSpinnerStyle] = useState('display-spinner');
+ const [formStyle, setFormStyle] = useState('');
  const { register, handleSubmit } = useForm();
  const onSubmit = (data) => {
+   setFormStyle('display-spinner')
+   setSpinnerStyle('')
   const config = {
    method: 'POST',
    headers: {
@@ -21,12 +26,23 @@ function Registration() {
     if (data.message) {
      setError(data.message);
      setErrorStyle('bg-danger text-white p-2');
-    }
-   });
+     setFormStyle('')
+     setSpinnerStyle('display-spinner')
+    }else{
+
+      localStorage.setItem('token', data.token);
+      window.location = '/todos';
+     }
+    })
+    .catch((err) => console.log(err))
  };
 
  return (
   <div className="form">
+    <div className={`spinner-container ${spinnerStyle}`}>
+    <img className="spinner" src={Image} alt="spinner" />
+   </div>
+   <div className={`form ${formStyle}`}>
    <h3>Register Here</h3>
    <p className={errorStyle}>{error}</p>
    <form onSubmit={handleSubmit(onSubmit)}>
@@ -64,6 +80,7 @@ function Registration() {
    <small className="text-mute">
     Already registered ? <Link to="/login">Login Here</Link>
    </small>
+   </div>
   </div>
  );
 }

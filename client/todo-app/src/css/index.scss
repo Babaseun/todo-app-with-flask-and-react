@@ -1,52 +1,77 @@
 * {
- padding: 0;
- margin: 0;
- box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 .header {
- background: darkblue;
- color: white;
- max-width: 100%;
- height: 60px;
- display: flex;
- justify-content: center;
- align-items: center;
- font-size: 35px;
+  background: darkblue;
+  color: white;
+  max-width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
 }
+
 .form {
- max-width: 50%;
- margin: 30px auto;
+  max-width: 60%;
+  margin: 30px auto;
+}
+.login-form {
+  max-width: 40%;
+  margin: 30px auto;
+}
+@media only screen and(max-width:700px) {
+  .form {
+    max-width: 80%;
+    margin: 30px auto;
+  }
+  .login-form {
+    max-width: 80%;
+    margin: 30px auto;
+  }
 }
 .spinner {
- width: 20%;
+  width: 20%;
 }
 .spinner-container {
- width: 100%;
- display: flex;
- justify-content: center;
- margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 .display-form,
 .display-spinner,
 .display {
- display: none;
+  display: none;
 }
 .todo-container > div {
- display: flex;
- max-width: 500px;
- margin: 20px auto;
- justify-content: space-between;
+  display: flex;
+  max-width: 500px;
+  margin: 20px auto;
+  justify-content: space-between;
 }
 .search-box {
- display: flex;
- max-width: 500px;
- margin: 20px auto;
+  display: flex;
+  max-width: 500px;
+  margin: 20px auto;
 }
 .todo-section {
- padding: 20px;
+  padding: 20px;
 }
 .todo {
- border-bottom: 1px solid gainsboro;
- padding-bottom: 10px;
- padding-top: 10px;
+  border-bottom: 1px solid gainsboro;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.center-name {
+  display: flex;
+  justify-content: center;
+}
+.user {
+  margin-right: 10px;
+}
+.todo-style-1 {
+  text-decoration: line-through;
 }
