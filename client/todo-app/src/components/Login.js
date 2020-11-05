@@ -1,44 +1,45 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import Image from "./Spinner-1s-200px.gif";
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import Image from './Spinner-1s-200px.gif';
+import { Link } from 'react-router-dom';
 
 function Login() {
-  const [error, setError] = useState("");
-  const [errorStyle, setErrorStyle] = useState("");
-  const [spinnerStyle, setSpinnerStyle] = useState("display-spinner");
-  const [formStyle, setFormStyle] = useState("");
+  const [error, setError] = useState('');
+  const [errorStyle, setErrorStyle] = useState('');
+  const [spinnerStyle, setSpinnerStyle] = useState('display-spinner');
+  const [formStyle, setFormStyle] = useState('');
 
   const { register, handleSubmit } = useForm();
-  const onSubmit = data => {
-    setFormStyle("display-spinner");
-    setSpinnerStyle("");
+  const onSubmit = (data) => {
+    setFormStyle('display-spinner');
+    setSpinnerStyle('');
     const config = {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     };
-    fetch("http://localhost:5000/api/v1/login", config)
-      .then(res => res.json())
-      .then(data => {
+    fetch('http://localhost:5000/api/v1/login', config)
+      .then((res) => res.json())
+      .then((data) => {
         if (data.message) {
-          setSpinnerStyle("display-spinner");
-          setFormStyle("");
+          setSpinnerStyle('display-spinner');
+          setFormStyle('');
 
           setError(data.message);
-          setErrorStyle("bg-danger text-white p-2");
+          setErrorStyle('bg-danger text-white p-2');
         } else {
-          setError("");
-          setErrorStyle("");
-          setSpinnerStyle("");
-          setFormStyle("display-form");
+          setError('');
+          setErrorStyle('');
+          setSpinnerStyle('');
+          setFormStyle('display-form');
 
-          localStorage.setItem("token", data.token);
-          window.location = "/todos";
+          localStorage.setItem('token', data.token);
+          window.location = '/todos';
         }
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -57,7 +58,7 @@ function Login() {
                 name="email"
                 type="email"
                 className="form-control"
-                ref={register({})}
+                ref={register({ required: true })}
               />
             </div>
             <div className="form-group">
@@ -66,13 +67,16 @@ function Login() {
                 name="password"
                 type="password"
                 className="form-control"
-                ref={register({})}
+                ref={register({ required: true })}
               />
             </div>
             <div className="form-group">
               <button className="btn btn-primary btn-block">Login</button>
             </div>
           </form>
+          <small className="text-mute">
+            Not yet registered ? <Link to="/">Register Here</Link>
+          </small>
         </div>
       </div>
     </div>

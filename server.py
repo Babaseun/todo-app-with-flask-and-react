@@ -16,6 +16,7 @@ from middleware import get_user
 @app.route('/api/v1/register', methods=['POST'])
 def register():
     data = request.get_json()
+
     user_exists = User.query.filter_by(email=data['email']).first()
 
     if user_exists:

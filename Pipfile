@@ -12,6 +12,7 @@ flask-cors = "*"
 pyjwt = "*"
 flask-sqlalchemy = "*"
 bcrypt = "*"
+jwt = "*"
 
 [requires]
 python_version = "3.7"
